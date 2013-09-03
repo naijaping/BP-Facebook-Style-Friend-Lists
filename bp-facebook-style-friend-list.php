@@ -37,68 +37,82 @@ class Bp_Facebook_Style_Friend_List_Widget extends WP_Widget {
 	
 	
 	
-	function widget( $args, $instance ) {
-		global $bp;
-		if(bp_facebook_style_friend_list_is_user()){
-			$user_id = $bp->displayed_user->id;
-			$user_all_friends_url = $bp->displayed_user->domain . BP_FRIENDS_SLUG;
-			$user_name = $bp->displayed_user->fullname;
-		}
-		elseif(is_user_logged_in()){
-			$user_id = $bp->loggedin_user->id;
-			$user_all_friends_url = $bp->loggedin_user->domain . BP_FRIENDS_SLUG;
-			$user_name = $bp->loggedin_user->fullname;
-		}
-		?>
-                        <?php
-			extract( $args );
-			echo $before_widget;
-			echo $before_title;
-			if(!bp_show_friends_is_user() || $bp->loggedin_user->id == $bp->displayed_user->id) printf( __( "My Friends - <a href='%s'>All</a>", 'bp-facebook-style-friend-list' ), $user_all_friends_url);
-			else printf( __( '%1$s&apos;s Friends - <a href="%2$s">All</a>', 'bp-facebook-style-friend-list' ), $user_name, $user_all_friends_url);
-		    echo $after_title; ?>
-
- function bp_facebook_style_friend_list_show_list($user_id,$max_num){
- if ( bp_has_members( 'user_id='.$user_id ) ) : ?>
-<ul id="widget-members-friends-list" class="item-list">
-<?php while ( bp_members() ) : bp_the_member(); ?>
-<li>
-<div class="item-avatar">
-<a href="<?php bp_member_permalink(); ?>"><?php bp_member_avatar(); ?></a>
-</div>
-<div class="item">
-<div class="item-title">
-<a href="<?php bp_member_permalink(); ?>"><?php bp_member_name(); ?></a>
-</div>
-<div class="clear"></div>
-		</li>
-<?php endwhile; ?>
-
-	</ul>
-
-<?php else: ?>
-
-<p><?php _e( "Sorry, no friends found.", 'bp-facebook-style-friend-list' ); ?></p>
-	
-
-<?php endif; 
-
-}
-
-function update( $new_instance, $old_instance ) {
-		$instance = $old_instance;
-		$instance['max_num'] = strip_tags( $new_instance['max_num'] );
-
-		return $instance;
-	}
-
-	function form( $instance ) {
-		$instance = wp_parse_args( (array) $instance, array( 'max_num' => 5 ) );
-		$max_num = strip_tags( $instance['max_num'] );
-		?>
+  function widget( $args, $instance ) { 
+ 		   global $bp; 
+ 		   extract( $args ); 
+ 		   if ( bp_displayed_user_domain() ) { 
+ 		   $user_id = $bp->displayed_user->id; 
+ 		   $link = str_replace( bp_displayed_user_domain(), bp_displayed_user_domain(), bp_get_friends_slug() ); 
+ 		   $instance['title'] = sprintf( __( '%s friends', 'bp-facebook-style-friend-list' ), bp_get_displayed_user_fullname() ); 
+ 		 
+ 		   } elseif ( bp_loggedin_user_domain() ) { 
+ 		   $user_id = $bp->loggedin_user->id; 
+ 		   $link = trailingslashit( bp_loggedin_user_domain() . bp_get_friends_slug() ); 
+ 		   $instance['title'] = __( 'My friends', 'bp-facebook-style-friend-list' ); 
+ 		 
+ 		      } else { 
+ 		          return; 
+ 		          } 
+ 		 
+ 		          if ( !$instance['friend_default'] ) 
+ 	                 $instance['friend_default'] = 'active'; 
+ 		 
+ 		         $title = apply_filters( 'widget_title', $instance['title'] ); 
+ 		 
+ 		           echo $before_widget; 
+ 		 
+ 		            $title = $instance['link_title'] ? '<a href="' . $link . '">' . $title . '</a>' : $title; 
+ 		 
+ 		            echo $before_title 
+ 		              . $title 
+ 		              . $after_title; ?> 
+ 		 
+<?php if ( bp_has_members( 'user_id=' . $user_id . '&type=' . $instance['friend_default'] . '&max=' . $instance['max_friends'] . '&populate_extras=1' ) ) : ?>
+<ul id="members-list" class="item-list">
+	 <?php while ( bp_members() ) : bp_the_member(); ?>
+         <li>
+         <div class="item-avatar">
+         <a href="<?php bp_member_permalink() ?>"><?php bp_member_avatar('type=full&width=40&height=40') ?></a></div>
+         <div class="item">
+         <div class="item-title">
+	 <a href="<?php bp_member_permalink() ?>"><?php bp_member_name() ?></a>
+         <div class="clear"></div></div>
+	<?php endwhile; ?>
+         </div>
 		
-		<p><label for="bp-facebook-style-friend-list-widget-max-num"><?php _e( 'Max Number of Friends:','bp-facebook-style-friend-list' ); ?> <input class="widefat" id="<?php echo $this->get_field_id( 'max_num' ); ?>" name="<?php echo $this->get_field_name( 'max_num' ); ?>" type="text" value="<?php echo attribute_escape( $max_num ); ?>" style="width: 30%" /></label></p>
-		
+	<?php else: ?>
+
+	<<?php echo $after_widget; ?> 
+ 		        <?php 
+ 		        } 
+function update( $new_instance, $old_instance ) { 
+ 		                $instance = $old_instance; 
+ 		 
+ 		                $instance['max_friends']    = strip_tags( $new_instance['max_friends'] ); 
+ 		                $instance['friend_default'] = strip_tags( $new_instance['friend_default'] ); 
+ 		                $instance['link_title']     = (bool)$new_instance['link_title']; 
+ 		 
+ 		                return $instance; 
+ 		        } 
+ 		 
+ 		        function form( $instance ) { 
+ 		                $defaults = array( 
+ 		                        'max_friends'    => 5, 
+ 		                        'friend_default' => 'active', 
+ 		                        'link_title'     => false 
+ 		                ); 
+ 		                $instance = wp_parse_args( (array) $instance, $defaults ); 
+ 		 
+ 		                $max_friends    = strip_tags( $instance['max_friends'] ); 
+ 		                $friend_default = strip_tags( $instance['friend_default'] ); 
+ 		                $link_title     = (bool)$instance['link_title']; 
+ 	                ?> 
+ 	
+ <p><label for="<?php echo $this->get_field_name('link_title') ?>"><input type="checkbox" name="<?php echo $this->get_field_name('link_title') ?>" value="1" <?php checked( $link_title ) ?> /> <?php _e( 'Link widget title to Members directory', 'bp-facebook-style-friend-list' ) ?></label></p> 
+ 		 
+ <p><label for="bp-facebook-style-friend-list-max"><?php _e('Max friends to show:', 'bp-facebook-style-friend-list'); ?> <input class="widefat" id="<?php echo $this->get_field_id( 'max_friends' ); ?>" name="<?php echo $this->get_field_name( 'max_friends' ); ?>" type="text" value="<?php echo esc_attr( $max_friends ); ?>" style="width: 30%" /></label></p> 
+ 		 
+ 		                
 	<?php
 	}
 }
