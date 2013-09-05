@@ -4,8 +4,8 @@ Plugin Name: BP Facebook Style Friend Lists
 Plugin URI: http://cityflavourmagazine.com
 Description: Show Photos And Names of User's Friends Or Current Viewing Member's Friends  
 Version: 1.0
-Requires at least: WordPress 3.0 / BuddyPress 1.3
-Tested up to: WordPress 3.6  / BuddyPress 1.8 
+Requires at least: WordPress 3.0  BuddyPress 1.3
+Tested up to: WordPress 3.6   BuddyPress 1.8 
 License: GNU/GPL 2
 Author URI: http://cityflavourmagazine.com/
 Author:Prince Abiola Ogundipe
@@ -81,7 +81,7 @@ class Bp_Facebook_Style_Friend_List_Widget extends WP_Widget {
 
 			<div class="widget-error">
 				
-                                <p><?php _e( "Sorry, no friends found.", 'bp-facebook-style-friend-list' ); ?></p>
+                                <p><?php _e( "Sorry, no friends.", 'bp-facebook-style-friend-list' ); ?></p>
 			</div>
 
 		<?php endif; ?>
