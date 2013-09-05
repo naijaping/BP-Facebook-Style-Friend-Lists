@@ -37,7 +37,7 @@ class Bp_Facebook_Style_Friend_List_Widget extends WP_Widget {
 	
 	function bp_facebook_style_friend_list_widget() {
 		$widget_ops = array('classname' => 'widget_facebook_style_friend_list','description' => __( "Show Photos And Names of User's Friends Or Current Viewing Member's Friends", "bp-facebook-style-friend-list") );
-		parent::WP_Widget( false, $name = __('Friends','bp-facebook-style-friend-list'), $widget_ops);
+		parent::WP_Widget( false, __('FB style friend list','bp-facebook-style-friend-list'), $widget_ops);
 	}
 
     //display
@@ -55,7 +55,7 @@ class Bp_Facebook_Style_Friend_List_Widget extends WP_Widget {
                 extract( $args );
                 echo $before_widget;
 		echo $before_title
-		   . $widget_name
+		   . 'Friends <a style="font-size:11px;color:#3B5998;float:right;margin-right:12px"href="' . bp_displayed_user_domain() . 'friends/">See All</a>'
 		   . $after_title; ?>
         
         
