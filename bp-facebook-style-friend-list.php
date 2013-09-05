@@ -40,11 +40,10 @@ class Bp_Facebook_Style_Friend_List_Widget extends WP_Widget {
 		parent::WP_Widget( false, __('FB style friend list','bp-facebook-style-friend-list'), $widget_ops);
 	}
 
-    //display
     
     function widget($args, $instance) {
         global $bp;
-        //do not display if the user is not logged in or you are not viewing a profile
+        //dont show if user is not logged in or not viewing a profile
         if( !is_user_logged_in())
                 $user_id=bp_loggedin_user_id ();
         
@@ -79,7 +78,7 @@ class Bp_Facebook_Style_Friend_List_Widget extends WP_Widget {
 
 			<div class="widget-error">
 				
-                                <p><?php _e( "Sorry, no friends.", 'bp-facebook-style-friend-list' ); ?></p>
+                                <p><?php _e( "Sorry, no friends found.", 'bp-facebook-style-friend-list' ); ?></p>
 			</div>
 
 		<?php endif; ?>
