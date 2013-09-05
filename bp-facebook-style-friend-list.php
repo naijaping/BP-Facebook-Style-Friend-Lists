@@ -45,15 +45,13 @@ class Bp_Facebook_Style_Friend_List_Widget extends WP_Widget {
     function widget($args, $instance) {
         global $bp;
         //do not display if the user is not logged in or you are not viewing a profile
-        $user_id=false;
-        if(is_user_logged_in())
-            $user_id=bp_loggedin_user_id ();
+        if( !is_user_logged_in())
+                $user_id=bp_loggedin_user_id ();
         
-        if(bp_is_user())
-            $user_id=bp_displayed_user_id ();
-        if(!$user_id)
-            return;
-                
+                if(bp_is_user())
+                $user_id=bp_displayed_user_id ();
+                if(!$user_id)
+                return;
                 extract( $args );
                 echo $before_widget;
 		echo $before_title
