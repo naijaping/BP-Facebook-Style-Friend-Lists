@@ -78,7 +78,7 @@ class Bp_Facebook_Style_Friend_List_Widget extends WP_Widget {
 
 			<div class="widget-error">
 				
-                                <p><?php _e( "Sorry, no friends found.", 'bp-facebook-style-friend-list' ); ?></p>
+                                <p><?php _e( "Sorry, no friends here.", 'bp-facebook-style-friend-list' ); ?></p>
 			</div>
 
 		<?php endif; ?>
