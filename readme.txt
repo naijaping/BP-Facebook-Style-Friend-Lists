@@ -9,7 +9,7 @@ Stable tag: 1.0
 
 
 == Description ==
-This is a very lightweight Buddypress plugin that Show Photos And Names of User's Friends Or Current Viewing Member's Friends
+This is a very lightweight Buddypress plugin that Shows Photos And Names of User's Friends Or Current Viewing Member's Friends
 
 With this plugin, you can set any total number of friends to show in the widget.
 
