@@ -1,5 +1,6 @@
 === BP Facebook Style Friend Lists ===
 Contributors: @naijaping
+Donate link:
 Tags: buddypress, friend list, friends widget, facebook friends, show friends
 Requires at least: WordPress 3.0  BuddyPress 1.5
 Tested up to: WordPress 3.6  BuddyPress 1.8.1
