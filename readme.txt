@@ -35,6 +35,7 @@ It also has a link to view all friends
 
 1. Here's a screenshot of it in action
 
+/assets/screenshot-2.png
 
 
 == Frequently Asked Questions ==
