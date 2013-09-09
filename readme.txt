@@ -9,6 +9,7 @@ Stable tag: 1.0
 
 
 == Description ==
+
 This is a very lightweight Buddypress plugin that Shows Photos And Names of User's Friends Or Current Viewing Member's Friends
 
 With this plugin, you can set any total number of friends to show in the widget.
@@ -20,31 +21,36 @@ It also has a link to view all friends
 
 
 == Installation ==
-1. Install the plugin through the 'Plugins >> Add New' menu in WordPress or do a manual upload.
 
-2. Activate the plugin
+*  Install the plugin through the 'Plugins >> Add New' menu in WordPress or do a manual upload.
 
-3. Go to your widget area and look for "FB Style Friend List"
+*  Activate the plugin
 
-4. Drag it to your widget and set any total number of friends to show. you are done....
+*  Go to your widget area and look for "FB Style Friend List"
+
+*  Drag it to your widget and set any total number of friends to show. you are done....
 
 
 == Screenshots ==
+
 1. Here's a screenshot of it in action
 
 
 
 == Frequently Asked Questions ==
+
 1. Is this Plugin working?
 
 2. Answer: Yes it is.......
 
 
 == Notes ==
+
 Any suggestions are welcome.......
 
 
 
 == Changelog ==
+
 = 1.0 =
 * Initial Release Of The Plugin
