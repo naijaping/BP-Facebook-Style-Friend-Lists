@@ -54,3 +54,8 @@ Any suggestions are welcome.......
 
 = 1.0 =
 * Initial Release Of The Plugin
+
+
+== Upgrade Notice ==
+
+None...........
