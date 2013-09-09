@@ -2,7 +2,7 @@
 
 Contributor: @naijaping
 Tags: buddypress, friends, friend list, friends widget, facebook friends
-Requires at least: WordPress 3.0 BuddyPress 1.5
+Requires at least: WordPress 3.0  BuddyPress 1.5
 Tested up to: WordPress 3.6  BuddyPress 1.8.1
 License: GNU/GPL 2
 Stable tag: 1.0
