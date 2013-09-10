@@ -11,7 +11,6 @@ Author URI: http://cityflavourmagazine.com/
 Author:Prince Abiola Ogundipe
 */
 
-
 /**
  *  Make sure BuddyPress is loaded
  */
@@ -39,8 +38,7 @@ class Bp_Facebook_Style_Friend_List_Widget extends WP_Widget {
 		$widget_ops = array('classname' => 'widget_facebook_style_friend_list','description' => __( "Show Photos And Names of User's Friends Or Current Viewing Member's Friends", "bp-facebook-style-friend-list") );
 		parent::WP_Widget( false, __('FB style friend list','bp-facebook-style-friend-list'), $widget_ops);
 	}
-
-    
+        
     function widget($args, $instance) {
         global $bp;
         //dont show if user is not logged in or not viewing a profile
@@ -53,12 +51,13 @@ class Bp_Facebook_Style_Friend_List_Widget extends WP_Widget {
                 return;
                 extract( $args );
                 echo $before_widget;
-		echo $before_title
-		   . 'Friends <a style="font-size:11px;color:#3B5998;float:right;margin-right:12px"href="' . bp_displayed_user_domain() . 'friends/">See All</a>'
-		   . $after_title; ?>
+		echo $before_title;?>
+              <?php bp_word_or_name( __( "My Friends", 'bp-facebook-style-friend-list' ), __( "Friends", 'bp-facebook-style-friend-list' ) ) ?> (<?php echo BP_Friends_Friendship::total_friend_count( $bp->displayed_user->id ) ?>)<span>
+<a style="font-size:11px;color:#3B5998; float:right; margin-right:12px "href="<?php echo $bp->displayed_user->domain . $bp->friends->slug ?>"><?php _e('See All', 'bp-facebook-style-friend-list') ?></a></span>
+		<?php echo $after_title;?>
         
         
-        <?php if ( bp_has_members( 'type=newest&max='. $instance['max_num'] . '&user_id='.bp_displayed_user_id() ) & is_user_logged_in() ) : ?>
+        <?php if ( bp_has_members( 'type=active&max='. $instance['max_num'] . '&user_id='.bp_displayed_user_id() ) & is_user_logged_in() ) : ?>
 
 	 <ul id="members-list" class="item-list">
 	 <?php while ( bp_members() ) : bp_the_member(); ?>
@@ -67,9 +66,8 @@ class Bp_Facebook_Style_Friend_List_Widget extends WP_Widget {
          <a href="<?php bp_member_permalink() ?>"><?php bp_member_avatar('type=full&width=50&height=50') ?></a></div>
          <div class="item">
          <div class="item-title">
-	 <a style="color:#3B5998;"href="<?php bp_member_permalink() ?>"><?php bp_member_name() ?></a>
-         
-        <div class="clear"></div></div>
+	 <a style="color:#3B5998;"href="<?php bp_member_permalink() ?>"><?php bp_member_name() ?></a>          
+         <div class="clear"></div></div>
 	<?php endwhile; ?>
          </div>
 		
@@ -82,7 +80,7 @@ class Bp_Facebook_Style_Friend_List_Widget extends WP_Widget {
 			</div>
 
 		<?php endif; ?>
-
+                
 		<?php echo $after_widget; ?>
 <?php
 	}
