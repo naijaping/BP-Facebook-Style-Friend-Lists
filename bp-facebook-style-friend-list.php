@@ -53,7 +53,7 @@ class Bp_Facebook_Style_Friend_List_Widget extends WP_Widget {
                 echo $before_widget;
 		echo $before_title;?>
               <?php bp_word_or_name( __( "My Friends", 'bp-facebook-style-friend-list' ), __( "Friends", 'bp-facebook-style-friend-list' ) ) ?> (<?php echo BP_Friends_Friendship::total_friend_count( $bp->displayed_user->id ) ?>)<span>
-<a style="font-size:11px;color:#3B5998; float:right; margin-right:12px "href="<?php echo $bp->displayed_user->domain . $bp->friends->slug ?>"><?php _e('See All', 'bp-facebook-style-friend-list') ?></a></span>
+<a style="font-size:11px;color:#3B5998; float:right;font-weight:normal;margin-right:1px "href="<?php echo $bp->displayed_user->domain . $bp->friends->slug ?>"><?php _e('See All', 'bp-facebook-style-friend-list') ?></a></span>
 		<?php echo $after_title;?>
         
         
