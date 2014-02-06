@@ -3,9 +3,9 @@
 Plugin Name: BP Facebook Style Friend Lists 
 Plugin URI: http://cityflavourmagazine.com
 Description: Show Photos And Names of User's Friends Or Current Viewing Member's Friends  
-Version: 1.0
-Requires at least: WordPress 3.0  BuddyPress 1.3
-Tested up to: WordPress 3.6   BuddyPress 1.8 
+Version: 1.5
+Requires at least: 3.0  and BuddyPress 1.3
+Tested up to: 3.8.1  and BuddyPress 1.9.2 
 License: GNU/GPL 2
 Author URI: http://cityflavourmagazine.com/
 Author:Prince Abiola Ogundipe
@@ -53,7 +53,7 @@ class Bp_Facebook_Style_Friend_List_Widget extends WP_Widget {
                 echo $before_widget;
 		echo $before_title;?>
               <?php bp_word_or_name( __( "My Friends", 'bp-facebook-style-friend-list' ), __( "Friends", 'bp-facebook-style-friend-list' ) ) ?> (<?php echo BP_Friends_Friendship::total_friend_count( $bp->displayed_user->id ) ?>)<span>
-<a style="font-size:11px;color:#3B5998; float:right;font-weight:normal;margin-right:1px "href="<?php echo $bp->displayed_user->domain . $bp->friends->slug ?>"><?php _e('See All', 'bp-facebook-style-friend-list') ?></a></span>
+<a style="font-size:11px;color:#3B5998;font-weight:normal;float:right;margin-right:1px "href="<?php echo $bp->displayed_user->domain . $bp->friends->slug ?>"><?php _e('See All', 'bp-facebook-style-friend-list') ?></a></span>
 		<?php echo $after_title;?>
         
         
@@ -67,6 +67,8 @@ class Bp_Facebook_Style_Friend_List_Widget extends WP_Widget {
          <div class="item">
          <div class="item-title">
 	 <a style="color:#3B5998;"href="<?php bp_member_permalink() ?>"><?php bp_member_name() ?></a>          
+         <div class="total-ore"style="font-size:9px;color:#999;">
+         <?php bp_member_total_friend_count();?></div>
          <div class="clear"></div></div>
 	<?php endwhile; ?>
          </div>
