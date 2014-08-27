@@ -5,7 +5,7 @@ Plugin URI: http://cityflavourmagazine.com
 Description: Show Photos And Names of User's Friends Or Current Viewing Member's Friends  
 Version: 1.5
 Requires at least: 3.0  and BuddyPress 1.3
-Tested up to: 3.8.1  and BuddyPress 1.9.2 
+Tested up to: 3.9.2  and BuddyPress 2.0.2 
 License: GNU/GPL 2
 Author URI: http://cityflavourmagazine.com/
 Author:Prince Abiola Ogundipe
